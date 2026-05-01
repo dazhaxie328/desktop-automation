@@ -1,168 +1,167 @@
-# 桌面自动化插件
+# 智能桌面自动化机器人
 
-一个功能强大的 Python 桌面自动化库，支持鼠标操作、键盘操作、屏幕截图、图像识别和文件管理。
+通过 Telegram 自然语言控制电脑，支持复杂任务自动执行。
 
 ## 功能特性
 
-- ✅ 鼠标操作（点击、移动、拖拽、滚动）
-- ✅ 键盘操作（输入、快捷键、按键控制）
-- ✅ 屏幕截图（全屏、区域截图）
-- ✅ 图像识别（找图、等待图像出现）
-- ✅ 窗口操作（获取位置、聚焦窗口）
-- ✅ 文件管理（打开、复制、移动、删除）
-- ✅ 任务录制与回放
-- ✅ **Telegram 交互式控制**
+- ✅ 自然语言命令理解
+- ✅ 鼠标操作（点击、移动、拖拽）
+- ✅ 键盘操作（输入、快捷键）
+- ✅ 屏幕截图
+- ✅ 文件/应用打开
+- ✅ 终端命令执行
+- ✅ 循环执行
+- ✅ 定时执行
+- ✅ 任务历史记录
 
 ## 快速开始
 
-### 安装
+### 1. 配置 Telegram
 
-```bash
-# 克隆仓库
-git clone https://github.com/dazhaxie328/desktop-automation.git
-cd desktop-automation
-
-# 创建虚拟环境
-python3 -m venv venv
-source venv/bin/activate
-
-# 安装依赖
-pip install pyautogui pillow pynput requests
-```
-
-### 配置 Telegram
-
-在 `~/crypto-monitor/.env` 文件中配置：
+在 `~/crypto-monitor/.env` 文件中：
 
 ```
 TELEGRAM_BOT_TOKEN=你的Bot Token
 TELEGRAM_CHAT_ID=你的Chat ID
 ```
 
-### 运行
+### 2. 启动机器人
 
 ```bash
-# 方式1：使用启动脚本
-chmod +x start_bot.sh
-./start_bot.sh
-
-# 方式2：直接运行
-source venv/bin/activate
-python telegram_bot.py
+cd ~/desktop-automation
+chmod +x start_smart_bot.sh
+./start_smart_bot.sh
 ```
 
-## Telegram 命令
+## 自然语言命令
 
-### 截图
+### 📸 截图
 ```
-/screenshot - 截取屏幕
-```
-
-### 鼠标操作
-```
-/click x y - 点击指定位置
-/move x y - 移动鼠标
-/scroll amount - 滚动 (正=上, 负=下)
-/pos - 获取鼠标位置
-/mouse - 鼠标画圆测试
+截图
+截屏
+屏幕截图
 ```
 
-### 键盘操作
+### 🖱️ 鼠标操作
 ```
-/type text - 输入文本
-/key keyname - 按下按键 (enter, tab, etc.)
-/hotkey key1 key2 - 组合键 (ctrl c)
+点击 500 300
+单击 500 300
+双击 500 300
+右键 500 300
+移动鼠标 500 300
+滚动 3
+向上滚
+向下滚
 ```
 
-### 文件操作
+### ⌨️ 键盘操作
 ```
-/open filepath - 打开文件
+输入 Hello World
+打字 你好世界
+按键 enter
+回车
+退格
+删除
+制表
+全选
+复制
+粘贴
+撤销
+保存
 ```
 
-### 系统命令
+### 📁 文件/应用
 ```
-/screen - 获取屏幕尺寸
-/run command - 运行终端命令
-/help - 显示帮助
+打开 计算器
+打开 记事本
+打开 终端
+打开 浏览器
+打开 ~/document.txt
+```
+
+### 💻 终端命令
+```
+运行 ls -la
+执行 pwd
+运行 python3 --version
+```
+
+### 🔧 高级操作
+```
+循环3次 点击 500 300
+定时5秒后 截图
+找图 button.png
+等待 3
+```
+
+### 📊 信息获取
+```
+鼠标位置
+屏幕大小
+屏幕尺寸
+```
+
+### 📜 历史记录
+```
+/history - 查看操作历史
+/clear - 清除历史记录
 ```
 
 ## 使用示例
 
-### 1. 截图并发送
+### 示例1：自动填写表单
 ```
-/screenshot
-```
-
-### 2. 点击指定位置
-```
-/click 500 300
-```
-
-### 3. 输入文本
-```
-/type Hello World
+点击 500 300
+输入 张三
+点击 500 350
+输入 zhangsan@email.com
+点击 600 400
 ```
 
-### 4. 组合快捷键
+### 示例2：自动复制粘贴
 ```
-/hotkey ctrl s
-```
-
-### 5. 运行终端命令
-```
-/run ls -la
-```
-
-### 6. 打开文件
-```
-/open ~/document.txt
+点击 100 200
+全选
+复制
+点击 500 300
+粘贴
 ```
 
-## Python API
-
-```python
-from desktop_automation import DesktopAutomation
-
-auto = DesktopAutomation()
-
-# 鼠标点击
-auto.click(500, 300)
-
-# 输入文本
-auto.type_text("Hello")
-
-# 快捷键
-auto.hotkey("ctrl", "s")
-
-# 截图
-auto.screenshot()
+### 示例3：循环点击
 ```
+循环10次 点击 500 300
+```
+
+### 示例4：定时截图
+```
+定时3秒后 截图
+```
+
+### 示例5：打开应用并操作
+```
+打开 计算器
+等待 2
+点击 500 300
+```
+
+## 安全设置
+
+- 鼠标移到屏幕左上角触发安全异常
+- 危险命令被拒绝执行
+- 命令执行超时限制 (30秒)
 
 ## 文件结构
 
 ```
 desktop-automation/
 ├── desktop_automation.py  # 核心库
-├── telegram_bot.py        # Telegram 机器人
-├── start_bot.sh           # 启动脚本
+├── telegram_bot.py        # 基础机器人
+├── smart_bot.py           # 智能机器人
+├── start_bot.sh           # 基础启动脚本
+├── start_smart_bot.sh     # 智能启动脚本
 ├── examples.py            # 使用示例
-├── venv/                  # 虚拟环境
-├── screenshots/           # 截图目录
 └── README.md              # 说明文档
 ```
-
-## 安全设置
-
-- `pyautogui.FAILSAFE = True` - 鼠标移到屏幕左上角触发安全异常
-- `pyautogui.PAUSE = 0.5` - 每个操作间隔 0.5 秒
-- 危险命令会被拒绝执行 (rm -rf, sudo, etc.)
-
-## 注意事项
-
-1. **安全第一**：鼠标移到屏幕左上角可触发安全异常，终止自动化
-2. **权限问题**：某些操作可能需要管理员权限
-3. **分辨率依赖**：图像识别依赖屏幕分辨率
-4. **网络要求**：Telegram 机器人需要稳定的网络连接
 
 ## License
 
